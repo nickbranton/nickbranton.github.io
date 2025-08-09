@@ -429,7 +429,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Nick Branton</h1>
-            <p class="subtitle">Finance Professional</p>
+            <p class="subtitle">Finance Professional & Analyst</p>
             <p class="description">Specializing in debt capital markets, credit products, and financial analysis with expertise in syndicated loan portfolios and risk management.</p>
             <div class="hero-buttons">
                 <button class="btn btn-primary" id="downloadResume">Download Resume</button>
@@ -444,9 +444,7 @@
         <div class="about-grid">
             <div class="about-text">
                 <p>I'm a finance professional currently working as an Analyst in Debt Capital Markets & Credit Products at ALTER DOMUS in Chicago. With a Bachelor of Science in Finance from the University of Minnesota's Carlson School of Management, I bring a strong analytical foundation to complex financial challenges.</p>
-                
                 <p>My expertise spans syndicated loan portfolio management, CLO reporting, credit risk assessment, and financial modeling. I'm passionate about leveraging data-driven insights to make informed investment decisions and manage risk effectively.</p>
-
                 <p>Beyond traditional finance, I've had the unique opportunity to work in sustainability finance, managing over 100 environmental projects and contributing to community engagement initiatives that reached thousands of youth.</p>
             </div>
             <div class="stats">
@@ -540,73 +538,30 @@
             }
         });
 
-        // Resume download functionality
+        // Resume download functionality (PDF version)
         document.getElementById('downloadResume').addEventListener('click', function() {
             const button = this;
             const originalText = button.textContent;
             
-            // Add loading state
             button.classList.add('btn-loading');
             button.disabled = true;
             
-            // Create resume content
-            const resumeContent = `Nick Branton
-Chicago, IL • (612) 356-4345 • nickbranton1@gmail.com
-
-EDUCATION
-UNIVERSITY OF MINNESOTA - Minneapolis, MN
-Carlson School of Management
-Bachelor of Science in Finance
-Cumulative GPA: 3.54/4.0 Graduated May 2024
-
-EXPERIENCE
-ALTER DOMUS - Chicago, IL
-Analyst – Debt Capital Markets & Credit Products August 2024 - Present
-● Analyze and manage syndicated loan portfolios, ensuring strict adherence to credit policies, regulatory requirements, and risk controls.
-● Prepare, review, and reconcile CLO monthly reports, validating data accuracy and compliance with client-specific credit and risk guidelines.
-● Evaluate financial statements, capital structures, and liquidity profiles of syndicated and private debt issuers to assess creditworthiness and risk exposure.
-● Monitor and coordinate daily cash flows and principal repayments between clients and trustees, minimizing discrepancies and ensuring timely settlement of syndicated loan transactions.
-
-SPARK-Y - Minneapolis, MN
-Finance/Administrative Analyst January 2023 - August 2024
-● Managed financial planning and administration for over 100 sustainability projects, including pioneering aquaponics systems and a large urban agriculture lab.
-● Oversaw budgeting, financial reporting, and compliance for initiatives that promote environmental education and community engagement.
-● Supported strategic financial structuring for programs that reached thousands of youth, enhancing their learning and media visibility.
-
-CHARTWELL FINANCIAL ADVISORY - Minneapolis, MN
-Summer Investment Banking Analyst June 2023 - August 2023
-● Performed meticulous financial analysis and developed comprehensive 3-statement financial models, ensuring precision and accuracy.
-● Strengthened expertise in valuation theory, advanced financial modeling techniques, and M&A concepts through immersive training sessions and workshops.
-● Evaluated potential M&A deals, conducting robust due diligence, and delivering detailed reports on financial implications.
-
-CHARTWELL FINANCIAL ADVISORY - Minneapolis, MN
-Summer Analyst June 2022 - August 2022
-● Mastered 3-statement modeling through practical case studies and real client engagement–these enabled comprehensive analyses of companies' financial health, facilitating informed financial implications, and yielding precise forecasts of future performance.
-● Applied advanced valuation theories to assess the valuation of prospective companies.
-● Effectively conveyed complex financial concepts and findings to diverse audiences, facilitating clearer understanding while enhancing the client's confidence in these nuanced ideas.`;
-            
-            // Create and download file
             setTimeout(() => {
-                const blob = new Blob([resumeContent], { type: 'text/plain' });
-                const url = window.URL.createObjectURL(blob);
                 const link = document.createElement('a');
-                link.href = url;
-                link.download = 'Nick_Branton_Resume.txt';
+                link.href = 'Nick Branton_Resume_2025vF.pdf';
+                link.download = 'Nick_Branton_Resume_2025.pdf';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                window.URL.revokeObjectURL(url);
                 
-                // Reset button state
                 button.classList.remove('btn-loading');
                 button.disabled = false;
                 button.textContent = 'Downloaded!';
                 
-                // Reset button text after 2 seconds
                 setTimeout(() => {
                     button.textContent = originalText;
                 }, 2000);
-            }, 1500);
+            }, 1000);
         });
 
         // Smooth scroll for navigation links
@@ -648,3 +603,4 @@ Summer Analyst June 2022 - August 2022
     </script>
 </body>
 </html>
+
