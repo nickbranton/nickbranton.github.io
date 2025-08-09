@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Branton - Finance Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #333;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: #667eea;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item {
+            padding: 2rem 0;
+            position: relative;
+            background: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: #667eea;
+            border: 4px solid white;
+            top: 2.5rem;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .period {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+
+            .timeline-item::after {
+                left: 10px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation for resume download */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="logo">Nick Branton</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Nick Branton</h1>
+            <p class="subtitle">Finance Professional & Analyst</p>
+            <p class="description">Specializing in debt capital markets, credit products, and financial analysis with expertise in syndicated loan portfolios and risk management.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="downloadResume">Download Resume</button>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I'm a finance professional currently working as an Analyst in Debt Capital Markets & Credit Products at ALTER DOMUS in Chicago. With a Bachelor of Science in Finance from the University of Minnesota's Carlson School of Management, I bring a strong analytical foundation to complex financial challenges.</p>
+                
+                <p>My expertise spans syndicated loan portfolio management, CLO reporting, credit risk assessment, and financial modeling. I'm passionate about leveraging data-driven insights to make informed investment decisions and manage risk effectively.</p>
+
+                <p>Beyond traditional finance, I've had the unique opportunity to work in sustainability finance, managing over 100 environmental projects and contributing to community engagement initiatives that reached thousands of youth.</p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Projects Managed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3.54</div>
+                    <div class="stat-label">Cumulative GPA</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Chicago</div>
+                    <div class="stat-label">Based In</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <h2>Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Analyst – Debt Capital Markets & Credit Products</h3>
+                    <div class="company">ALTER DOMUS</div>
+                    <div class="period">August 2024 - Present</div>
+                    <p>Analyze and manage syndicated loan portfolios, prepare CLO monthly reports, and evaluate financial statements to assess creditworthiness and risk exposure.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Finance/Administrative Analyst</h3>
+                    <div class="company">SPARK-Y</div>
+                    <div class="period">January 2023 - August 2024</div>
+                    <p>Managed financial planning for 100+ sustainability projects, oversaw budgeting and compliance, and supported strategic financial structuring for youth programs.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Summer Investment Banking Analyst</h3>
+                    <div class="company">CHARTWELL FINANCIAL ADVISORY</div>
+                    <div class="period">June 2023 - August 2023</div>
+                    <p>Performed financial analysis, developed 3-statement financial models, and evaluated M&A deals with comprehensive due diligence.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Summer Analyst</h3>
+                    <div class="company">CHARTWELL FINANCIAL ADVISORY</div>
+                    <div class="period">June 2022 - August 2022</div>
+                    <p>Mastered 3-statement modeling, applied advanced valuation theories, and effectively conveyed complex financial concepts to diverse audiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <h2>Get In Touch</h2>
+        <p>I'm always interested in new opportunities and meaningful connections in the finance industry.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p>nickbranton1@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <h3>Phone</h3>
+                <p>(612) 356-4345</p>
+            </div>
+            <div class="contact-item">
+                <h3>Location</h3>
+                <p>Chicago, Illinois</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Resume download functionality
+        document.getElementById('downloadResume').addEventListener('click', function() {
+            const button = this;
+            const originalText = button.textContent;
+            
+            // Add loading state
+            button.classList.add('btn-loading');
+            button.disabled = true;
+            
+            // Create resume content
+            const resumeContent = `Nick Branton
+Chicago, IL • (612) 356-4345 • nickbranton1@gmail.com
+
+EDUCATION
+UNIVERSITY OF MINNESOTA - Minneapolis, MN
+Carlson School of Management
+Bachelor of Science in Finance
+Cumulative GPA: 3.54/4.0 Graduated May 2024
+
+EXPERIENCE
+ALTER DOMUS - Chicago, IL
+Analyst – Debt Capital Markets & Credit Products August 2024 - Present
+● Analyze and manage syndicated loan portfolios, ensuring strict adherence to credit policies, regulatory requirements, and risk controls.
+● Prepare, review, and reconcile CLO monthly reports, validating data accuracy and compliance with client-specific credit and risk guidelines.
+● Evaluate financial statements, capital structures, and liquidity profiles of syndicated and private debt issuers to assess creditworthiness and risk exposure.
+● Monitor and coordinate daily cash flows and principal repayments between clients and trustees, minimizing discrepancies and ensuring timely settlement of syndicated loan transactions.
+
+SPARK-Y - Minneapolis, MN
+Finance/Administrative Analyst January 2023 - August 2024
+● Managed financial planning and administration for over 100 sustainability projects, including pioneering aquaponics systems and a large urban agriculture lab.
+● Oversaw budgeting, financial reporting, and compliance for initiatives that promote environmental education and community engagement.
+● Supported strategic financial structuring for programs that reached thousands of youth, enhancing their learning and media visibility.
+
+CHARTWELL FINANCIAL ADVISORY - Minneapolis, MN
+Summer Investment Banking Analyst June 2023 - August 2023
+● Performed meticulous financial analysis and developed comprehensive 3-statement financial models, ensuring precision and accuracy.
+● Strengthened expertise in valuation theory, advanced financial modeling techniques, and M&A concepts through immersive training sessions and workshops.
+● Evaluated potential M&A deals, conducting robust due diligence, and delivering detailed reports on financial implications.
+
+CHARTWELL FINANCIAL ADVISORY - Minneapolis, MN
+Summer Analyst June 2022 - August 2022
+● Mastered 3-statement modeling through practical case studies and real client engagement–these enabled comprehensive analyses of companies' financial health, facilitating informed financial implications, and yielding precise forecasts of future performance.
+● Applied advanced valuation theories to assess the valuation of prospective companies.
+● Effectively conveyed complex financial concepts and findings to diverse audiences, facilitating clearer understanding while enhancing the client's confidence in these nuanced ideas.`;
+            
+            // Create and download file
+            setTimeout(() => {
+                const blob = new Blob([resumeContent], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'Nick_Branton_Resume.txt';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+                
+                // Reset button state
+                button.classList.remove('btn-loading');
+                button.disabled = false;
+                button.textContent = 'Downloaded!';
+                
+                // Reset button text after 2 seconds
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
